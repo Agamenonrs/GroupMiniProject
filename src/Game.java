@@ -63,4 +63,13 @@ public class Game {
         }
         ApplicationUtils.axis_x.forEach(c-> System.out.print(" " + c));
     }
+
+    public Piece[][] getBoard() {
+        return board;
+    }
+    public void changePosition(Piece piece){
+        this.board[piece.getPosition().getRow()][piece.getPosition().getCol()]=piece;
+        this.board[piece.getOldPosition().getRow()][piece.getOldPosition().getCol()] = null;
+        printBoard();
+    }
 }

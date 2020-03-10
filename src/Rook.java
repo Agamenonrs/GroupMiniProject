@@ -20,7 +20,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void move() {
+    public void move(Position newPosition) {
         System.out.println("Horizontally or vertically");
     }
 

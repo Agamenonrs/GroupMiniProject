@@ -8,5 +8,6 @@ public class Driver {
         piece.move(position);
         game.changePosition(piece);
 
+
     }
 }

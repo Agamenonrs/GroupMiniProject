@@ -1,11 +1,17 @@
-import enumeration.ApplicationUtils;
+import enumeration.HelpOptions;
+import util.ApplicationUtils;
 import enumeration.BoardIcons;
+import util.InputCollector;
+
+import java.util.Scanner;
 
 public class Game {
     private Piece[][] board;
+    Scanner in;
 
     public Game(){
         board = new Piece[8][8];
+        Scanner in = new Scanner(System.in);
         createBoard();
         printBoard();
     }
@@ -57,11 +63,16 @@ public class Game {
                 }else{
                     System.out.print(" "+BoardIcons.EMPTY.getCode());
                 }
-
             }
             System.out.println(" " + (i+1));
         }
         ApplicationUtils.axis_x.forEach(c-> System.out.print(" " + c));
+        System.out.println("\n " + "White move ");
+
+    }
+
+    public void askForMove(String ask){
+        InputCollector.getUserInput(ask);
     }
 
     public Piece[][] getBoard() {
@@ -72,4 +83,11 @@ public class Game {
         this.board[piece.getOldPosition().getRow()][piece.getOldPosition().getCol()] = null;
         printBoard();
     }
+    public void printHelOptions(){
+        for(HelpOptions help : HelpOptions.values()){
+            System.out.println(help.getDescription());
+        }
+
+    }
+
 }

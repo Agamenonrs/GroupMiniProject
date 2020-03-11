@@ -18,8 +18,8 @@ public abstract class Piece {
     }
 
     public boolean isValidMove(Position newPosition ){
-        if(newPosition.getRow() > 0 && newPosition.getCol() > 0
-            && newPosition.getCol() < 8 && newPosition.getCol() < 8)
+        if(newPosition.getRow() >= 0 && newPosition.getCol() >= 0
+            && newPosition.getCol() <= 8 && newPosition.getCol() <= 8)
             return true;
 
         return false;

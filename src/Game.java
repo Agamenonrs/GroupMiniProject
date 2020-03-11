@@ -27,9 +27,9 @@ public class Game {
                         p= new Knight(true,new Position(i,j));
                     }else if (j == 2 || j == 5){
                         p = new Bishop(true,new Position(i,j));
-                    }else if (j == 3){
-                        p = new Queen(true,new Position(i,j));
                     }else if (j == 4){
+                        p = new Queen(true,new Position(i,j));
+                    }else if (j == 3){
                         p = new King(true,new Position(i,j));
                     }
                 }else if(i == 1){
@@ -43,9 +43,9 @@ public class Game {
                         p = new Knight(false,new Position(i,j));
                     }else if (j == 2 || j == 5){
                         p = new Bishop(false,new Position(i,j));
-                    }else if (j == 3){
-                        p = new Queen(false,new Position(i,j));
                     }else if (j == 4){
+                        p = new Queen(false,new Position(i,j));
+                    }else if (j == 3){
                         p = new King(false,new Position(i,j));
                     }
                 }
@@ -78,6 +78,7 @@ public class Game {
     public Piece[][] getBoard() {
         return board;
     }
+
     public void changePosition(Piece piece){
         this.board[piece.getPosition().getRow()][piece.getPosition().getCol()]=piece;
         this.board[piece.getOldPosition().getRow()][piece.getOldPosition().getCol()] = null;

@@ -20,8 +20,14 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void move(Position newPosition) {
-        System.out.println("Horizontally or vertically");
+    public void move(Position position) {
+        if (super.isValidMove(position) && isValidMove(position)){
+            System.out.println("Valid move");
+            this.oldPosition= this.position;
+            this.position= position;
+        }else{
+            System.out.println("Invalid move");
+        }
     }
 
     @Override

@@ -3,11 +3,9 @@ import enumeration.BoardIcons;
 public class Driver {
     public static void main(String[] args) {
         Game game = new Game();
-        Piece piece = game.getBoard()[6][2];
-        Position position = new Position(2,3);
+        Piece piece = game.getBoard()[0][3];
+        Position position = new Position(1,2);
         piece.move(position);
-        game.changePosition(piece);
-
-
+        //game.changePosition(piece);
     }
 }

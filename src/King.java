@@ -10,9 +10,25 @@ public class King extends Piece {
         super(1000);
     }
 
+    public void move(Position position) {
+        if (super.isValidMove(position) && isValidMove(position)){
+            System.out.println("Valid move");
+            this.oldPosition= this.position;
+            this.position= position;
+        }else{
+            System.out.println("Invalid move");
+        }
+    }
+
     @Override
-    public void move(Position newPosition) {
-        System.out.println("One square");
+    public boolean isValidMove(Position position){
+        if ( (position.getRow() == this.position.getRow()+1 || position.getRow() == this.position.getRow()-1)
+                ||
+                (position.getCol() == this.position.getCol()+1 || position.getCol() == this.position.getCol()-1)){
+            return true;
+        }
+
+        return false;
     }
 
     @Override

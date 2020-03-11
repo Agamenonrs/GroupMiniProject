@@ -44,12 +44,13 @@ public class Pawn extends Piece {
     @Override
     public void move(Position position) {
         if (super.isValidMove(position) && isValidMove(position)){
+            System.out.println("Valid move");
+
             this.oldPosition= this.position;
             this.position= position;
+        }else{
+            System.out.println("Invalid move");
         }
-
-
-        super.setPosition(position);
     }
 
     @Override
@@ -79,19 +80,21 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMove(Position position){
-        if (super.isWhite && this.position.getRow()==2){
-            if ( position.getRow() == 6 || position.getRow() == 5){
+        System.out.println(super.isWhite);
+
+        if (super.isWhite && this.position.getRow()==1){
+            if ( position.getRow() == 2 || position.getRow() == 3){
                 return true;
             }
-        }else if (!(super.isWhite) && this.position.getRow()==7){
-            if ( position.getRow() == 3 || position.getRow() == 4){
+        }else if (!(super.isWhite) && this.position.getRow()==6){
+            if ( position.getRow() == 4 || position.getRow() == 5){
                 return true;
             }
-        }else if(super.isWhite && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()-1){
+        }else if(super.isWhite && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()+1){
                 return true;
-        }else if(!(super.isWhite) && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()+1){
+        }else if(!(super.isWhite) && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()-1){
             return true;
         }
-        return true;
+        return false;
     }
 }

@@ -13,7 +13,6 @@ public class King extends Piece {
     public void move(Position position) {
         if (super.isValidMove(position) && isValidMove(position)){
             System.out.println("Valid move");
-            this.oldPosition= this.position;
             this.position= position;
         }else{
             System.out.println("Invalid move");

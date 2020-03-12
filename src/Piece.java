@@ -5,7 +5,6 @@ public abstract class Piece {
     protected int value;
     protected boolean isWhite;
     protected Position position;
-    protected Position oldPosition;
 
     public Piece(int value, boolean isWhite,Position position){
         this(value);
@@ -31,14 +30,6 @@ public abstract class Piece {
 
     public Position getPosition() {
         return position;
-    }
-
-    public Position getOldPosition() {
-        return oldPosition;
-    }
-
-    public void setOldPosition(Position oldPosition) {
-        this.oldPosition = oldPosition;
     }
 
     public abstract void move(Position position);

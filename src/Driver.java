@@ -1,11 +1,26 @@
 import enumeration.BoardIcons;
+import util.ApplicationUtils;
+import util.InputCollector;
+
+import static util.ApplicationUtils.convertToIntegerArray;
 
 public class Driver {
     public static void main(String[] args) {
         Game game = new Game();
-        Piece piece = game.getBoard()[0][3];
-        Position position = new Position(1,2);
-        piece.move(position);
-        //game.changePosition(piece);
+        String input = "";
+        while (!input.equalsIgnoreCase("exit")){
+            input = InputCollector.getUserInput("Enter UCI (type 'Help' for help):");
+            if(input !=null && !input.equals("")){
+                if(input.equalsIgnoreCase("exit")){
+                    continue;
+                }
+                if(!ApplicationUtils.regexValitation(input,ApplicationUtils.UCI_PATTERN)){
+                    System.out.println("Wrong code. Try again");
+                    continue;
+                }
+                int[] typedPositions = convertToIntegerArray(input);
+                game.changePosition(typedPositions);
+            }
+        }
     }
 }

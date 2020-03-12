@@ -7,11 +7,9 @@ import java.util.Scanner;
 
 public class Game {
     private Piece[][] board;
-    Scanner in;
 
     public Game(){
         board = new Piece[8][8];
-        Scanner in = new Scanner(System.in);
         createBoard();
         printBoard();
     }
@@ -79,9 +77,12 @@ public class Game {
         return board;
     }
 
-    public void changePosition(Piece piece){
-        this.board[piece.getPosition().getRow()][piece.getPosition().getCol()]=piece;
-        this.board[piece.getOldPosition().getRow()][piece.getOldPosition().getCol()] = null;
+    public void changePosition(int[] positions){
+        Piece piece = this.board[positions[0]][positions[1]];
+        //if is valid moviment
+        this.board[piece.getPosition().getRow()][piece.getPosition().getCol()] = null;
+        piece.setPosition(new Position(positions[2],positions[3]));
+        this.board[piece.getPosition().getRow()][piece.getPosition().getCol()] = piece;
         printBoard();
     }
     public void printHelOptions(){

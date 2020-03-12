@@ -14,7 +14,6 @@ public class Knight extends Piece {
     public void move(Position position) {
         if (super.isValidMove(position) && isValidMove(position)){
             System.out.println("Valid move");
-            this.oldPosition= this.position;
             this.position= position;
 
         }else{

@@ -78,11 +78,11 @@ public class Game {
     }
 
     public void changePosition(int[] positions){
-        Piece piece = this.board[positions[0]][positions[1]];
+        Piece piece = this.board[positions[1]][positions[0]];
         //if is valid moviment
-        this.board[piece.getPosition().getRow()][piece.getPosition().getCol()] = null;
-        piece.setPosition(new Position(positions[2],positions[3]));
-        this.board[piece.getPosition().getRow()][piece.getPosition().getCol()] = piece;
+        this.board[piece.getPosition().getCol()][piece.getPosition().getRow()] = null;
+        piece.setPosition(new Position(positions[3],positions[2]));
+        this.board[piece.getPosition().getCol()][piece.getPosition().getRow()] = piece;
         printBoard();
     }
     public void printHelOptions(){

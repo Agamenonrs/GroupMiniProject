@@ -26,7 +26,7 @@ public class Driver {
                     game.changePosition(oldPosition,newPosition);
                 }
             }catch (InvalidMovement ex){
-                ex.getMessage();
+                System.out.println(ex.getMessage());
             }
 
         }

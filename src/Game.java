@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Game {
     private Piece[][] board;
+    private boolean whitePlayer = true;
 
     public Game(){
         board = new Piece[8][8];
@@ -66,7 +67,8 @@ public class Game {
             System.out.println(" " + (row+1));
         }
         ApplicationUtils.axis_x.forEach(c-> System.out.print(" " + c));
-        System.out.println("\n " + "White move ");
+        String move = isWhitePlayer() ? "White move " : "Black move";
+        System.out.println("\n " + move );
 
     }
 
@@ -80,9 +82,16 @@ public class Game {
 
     public void changePosition(Position oldPosition, Position newPosition) throws InvalidMovement {
         Piece piece = getPieceFromBoard(oldPosition);
+
+        /* throw invalidMoviment if threre is no piece or
+            the color piece chosen is wrong*/
+        if(piece == null || piece.isWhite() != isWhitePlayer())
+            throw new InvalidMovement();
+
         piece.move(newPosition);
         this.board[oldPosition.getRow()][oldPosition.getCol()] = null;
         this.board[piece.getPosition().getRow()][piece.getPosition().getCol()] = piece;
+        changePlayer();
         printBoard();
     }
 
@@ -97,4 +106,14 @@ public class Game {
 
     }
 
+    public boolean isWhitePlayer() {
+        return whitePlayer;
+    }
+
+    /**
+     * change de player's turn
+     */
+    private void changePlayer(){
+        whitePlayer = !whitePlayer;
+    }
 }

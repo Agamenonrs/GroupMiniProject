@@ -82,6 +82,9 @@ public class Pawn extends Piece {
     public boolean isValidMove(Position newPosition){
         System.out.println(super.isWhite);
 
+        if (!super.isValidMove(newPosition)){
+            return false;
+        }
         if( isSameColumn(this.position, newPosition)
             && this.position.getRow() + getDiff() == newPosition.getRow() ){
             return true;
@@ -94,11 +97,7 @@ public class Pawn extends Piece {
             if ( newPosition.getRow() == 4 || newPosition.getRow() == 5){
                 return true;
             }
-        }/*else if(super.isWhite && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()+1){
-                return true;
-        }else if(!(super.isWhite) && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()-1){
-            return true;
-        }*/
+        }
         return false;
     }
 

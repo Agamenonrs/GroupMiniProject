@@ -1,4 +1,5 @@
 import enumeration.BoardIcons;
+import exception.InvalidMovement;
 import jdk.nashorn.internal.ir.CallNode;
 
 import java.util.Objects;
@@ -42,12 +43,13 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void move(Position position) {
+    public void move(Position position) throws InvalidMovement {
         if (super.isValidMove(position) && isValidMove(position)){
             System.out.println("Valid move");
             this.position= position;
         }else{
             System.out.println("Invalid move");
+            throw  new InvalidMovement();
         }
     }
 
@@ -77,22 +79,35 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isValidMove(Position position){
+    public boolean isValidMove(Position newPosition){
         System.out.println(super.isWhite);
 
+        if( isSameColumn(this.position, newPosition)
+            && this.position.getRow() + getDiff() == newPosition.getRow() ){
+            return true;
+        }
         if (super.isWhite && this.position.getRow()==1){
-            if ( position.getRow() == 2 || position.getRow() == 3){
+            if ( newPosition.getRow() == 2 || newPosition.getRow() == 3){
                 return true;
             }
-        }else if (!(super.isWhite) && this.position.getRow()==6){
-            if ( position.getRow() == 4 || position.getRow() == 5){
+        }else if (!(super.isWhite) && this.position.getRow()== 6){
+            if ( newPosition.getRow() == 4 || newPosition.getRow() == 5){
                 return true;
             }
-        }else if(super.isWhite && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()+1){
+        }/*else if(super.isWhite && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()+1){
                 return true;
         }else if(!(super.isWhite) && position.getCol() == this.position.getCol() && position.getRow()==this.position.getRow()-1){
             return true;
-        }
+        }*/
         return false;
     }
+
+    private int getDiff(){
+        return super.isWhite ? +1 : -1 ;
+    }
+
+    private boolean isSameColumn(Position p1, Position p2){
+        return p1.getCol() == p2.getCol();
+    }
+
 }

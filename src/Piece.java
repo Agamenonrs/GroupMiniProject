@@ -1,3 +1,5 @@
+import exception.InvalidMovement;
+
 import java.util.Objects;
 
 public abstract class Piece {
@@ -32,7 +34,7 @@ public abstract class Piece {
         return position;
     }
 
-    public abstract void move(Position position);
+    public abstract void move(Position position) throws InvalidMovement;
 
     public abstract String getIcon();
 

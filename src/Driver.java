@@ -21,7 +21,9 @@ public class Driver {
                         continue;
                     }
                     int[] typedPositions = convertToIntegerArray(input);
-                    game.changePosition(typedPositions);
+                    Position oldPosition = new Position(typedPositions[0],typedPositions[1]);
+                    Position newPosition = new Position(typedPositions[2],typedPositions[3]);
+                    game.changePosition(oldPosition,newPosition);
                 }
             }catch (InvalidMovement ex){
                 ex.getMessage();

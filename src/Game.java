@@ -78,15 +78,18 @@ public class Game {
         return board;
     }
 
-    public void changePosition(int[] positions) throws InvalidMovement {
-        Position newPosition = new Position(positions[2],positions[3]);
-        Piece piece = this.board[positions[1]][positions[0]];
-        Position oldPosition = piece.getPosition();
+    public void changePosition(Position oldPosition, Position newPosition) throws InvalidMovement {
+        Piece piece = getPieceFromBoard(oldPosition);
         piece.move(newPosition);
         this.board[oldPosition.getRow()][oldPosition.getCol()] = null;
         this.board[piece.getPosition().getRow()][piece.getPosition().getCol()] = piece;
         printBoard();
     }
+
+    private Piece getPieceFromBoard(Position position) {
+        return this.board[position.getRow()][position.getCol()];
+    }
+
     public void printHelOptions(){
         for(HelpOptions help : HelpOptions.values()){
             System.out.println(help.getDescription());

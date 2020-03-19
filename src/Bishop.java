@@ -13,6 +13,8 @@ public class Bishop extends Piece {
 
     @Override
     public boolean isValidMove(Position newPosition){
+       /* If the piece moves from (X1, Y1) to (X2, Y2),
+            the move is valid if and only if |X2 ‐ X1| =|Y2 ‐ Y1*/
         if ( super.isValidMove(newPosition) &&
                 Math.abs(newPosition.getCol() - this.position.getCol()) ==
                 Math.abs(newPosition.getRow() - this.position.getRow())){

@@ -26,6 +26,7 @@ public class Queen extends Piece {
     }
 
     @Override
+
     public void move(Position position,Game game) throws InvalidMovement {
         if (super.isValidMove(position) && isValidMove(position)){
             System.out.println("Valid move");
@@ -34,6 +35,7 @@ public class Queen extends Piece {
             throw  new InvalidMovement();
         }
     }
+
 
     @Override
     public String getIcon(){

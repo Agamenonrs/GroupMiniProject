@@ -3,28 +3,35 @@ import exception.InvalidMovement;
 
 public class Knight extends Piece {
 
-    public  Knight(boolean isWhite, Position position){
+    public Knight(boolean isWhite, Position position) {
         super(2, isWhite, position);
     }
 
-    public Knight(){
+    public Knight() {
         super(2);
     }
 
     @Override
     public void move(Position position,Game game) throws InvalidMovement {
         if (super.isValidMove(position) && isValidMove(position)){
-            System.out.println("Valid move");
-            this.position= position;
-
+            this.position = position;
         }else{
             throw  new InvalidMovement();
         }
     }
 
     @Override
-    public boolean isValidMove(Position position){
-        if ( (position.getRow() == this.position.getRow()+2 || position.getRow() == this.position.getRow()-2)
+    public boolean isValidMove(Position newPosition) {
+        /*If the piece moves from (X1, Y1) to (X2, Y2), the move is valid if and only if (|X2 ‐ X1| = 1 and
+                |Y2 ‐ Y1| = 2) or ((|X2 ‐ X1| = 2 and |Y2 ‐ Y1| = 1) .*/
+        if ((Math.abs(newPosition.getCol() - this.position.getCol()) == 1
+                && Math.abs(newPosition.getRow() - this.position.getRow()) == 2)
+                || (Math.abs(newPosition.getCol() - this.position.getCol()) == 2
+                && Math.abs(newPosition.getRow() - this.position.getRow()) == 1)
+        ){
+            return true;
+        }
+        /*if ( (position.getRow() == this.position.getRow()+2 || position.getRow() == this.position.getRow()-2)
                 &&
                 (position.getCol() == this.position.getCol()+1 || position.getCol() == this.position.getCol()-1)){
                 return true;
@@ -33,18 +40,19 @@ public class Knight extends Piece {
                 &&
                 (position.getRow() == this.position.getRow()+1 || position.getRow() == this.position.getRow()-1)){
             return true;
-        }
+        }*/
 
         return false;
     }
+
     @Override
-    public String getIcon(){
+    public String getIcon() {
         return isWhite ? BoardIcons.WHITE_KNIGHT.getCode() : BoardIcons.BLACK_KNIGHT.getCode();
     }
 
     @Override
     public String toString() {
-        return "Knight{value= "+getValue()+"}";
+        return "Knight{value= " + getValue() + "}";
     }
 
     @Override

@@ -1,4 +1,5 @@
 import enumeration.BoardIcons;
+import exception.InvalidMovement;
 
 public class Bishop extends Piece {
 
@@ -21,13 +22,13 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void move(Position position) {
+    public void move(Position position,Game game) throws InvalidMovement {
         if (super.isValidMove(position) && isValidMove(position)){
             System.out.println("Valid move");
             this.position= position;
 
         }else{
-            System.out.println("Invalid move");
+            throw  new InvalidMovement();
         }
     }
 
@@ -39,5 +40,11 @@ public class Bishop extends Piece {
     @Override
     public String toString() {
         return "Bishop{value= "+getValue()+"}";
+    }
+
+    @Override
+    public boolean checkPath(Position oldPosition, Position newPosition, Game game) {
+        //TODO
+        return false;
     }
 }

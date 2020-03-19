@@ -80,7 +80,7 @@ public class Game {
         return board;
     }
 
-    public void changePosition(Position oldPosition, Position newPosition) throws InvalidMovement {
+    public void changePosition(Position oldPosition, Position newPosition, Game game) throws InvalidMovement {
         Piece piece = getPieceFromBoard(oldPosition);
 
         /* throw invalidMoviment if threre is no piece or
@@ -88,7 +88,7 @@ public class Game {
         if(piece == null || piece.isWhite() != isWhitePlayer())
             throw new InvalidMovement();
 
-        piece.move(newPosition);
+        piece.move(newPosition, game);
         this.board[oldPosition.getRow()][oldPosition.getCol()] = null;
         this.board[piece.getPosition().getRow()][piece.getPosition().getCol()] = piece;
         changePlayer();

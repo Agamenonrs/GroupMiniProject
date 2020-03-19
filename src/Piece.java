@@ -34,7 +34,7 @@ public abstract class Piece {
         return position;
     }
 
-    public abstract void move(Position position) throws InvalidMovement;
+    public abstract void move(Position position, Game game) throws InvalidMovement;
 
     public abstract String getIcon();
 
@@ -75,4 +75,7 @@ public abstract class Piece {
     public int hashCode() {
         return Objects.hash(value, isWhite);
     }
+
+
+    public abstract boolean checkPath(Position oldPosition, Position newPosition, Game game);
 }

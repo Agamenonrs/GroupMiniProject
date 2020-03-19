@@ -1,6 +1,5 @@
 import enumeration.BoardIcons;
 import exception.InvalidMovement;
-import jdk.nashorn.internal.ir.CallNode;
 
 import java.util.Objects;
 
@@ -13,7 +12,7 @@ public class Pawn extends Piece {
         this(isWite,false,null,position);
     }
 
-    public Pawn(boolean isWhite, boolean promoted, Piece newPiece,Position position){
+    public Pawn(boolean isWhite, boolean promoted, Piece newPiece, Position position){
         super(1,isWhite,position);
         this.promoted = promoted;
         this.newPiece = newPiece;
@@ -43,12 +42,11 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void move(Position position) throws InvalidMovement {
-        if (super.isValidMove(position) && isValidMove(position)){
+    public void move(Position position, Game game) throws InvalidMovement {
+        if (super.isValidMove(position) && isValidMove(position) && checkPath(this.position,position,game)){
             System.out.println("Valid move");
             this.position= position;
         }else{
-            System.out.println("Invalid move");
             throw  new InvalidMovement();
         }
     }
@@ -109,4 +107,13 @@ public class Pawn extends Piece {
         return p1.getCol() == p2.getCol();
     }
 
+    @Override
+    public boolean checkPath(Position oldPosition, Position newPosition, Game game) {
+        for(int i = oldPosition.getRow()+1;i<=newPosition.getRow();i++){
+            if(game.getBoard()[i][oldPosition.getCol()] != null){
+                return false;
+            }
+        }
+        return true;
+    }
 }

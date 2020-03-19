@@ -1,4 +1,5 @@
 import enumeration.BoardIcons;
+import exception.InvalidMovement;
 
 public class King extends Piece {
 
@@ -10,12 +11,12 @@ public class King extends Piece {
         super(1000);
     }
 
-    public void move(Position position) {
+    public void move(Position position,Game game) throws InvalidMovement {
         if (super.isValidMove(position) && isValidMove(position)){
             System.out.println("Valid move");
             this.position= position;
         }else{
-            System.out.println("Invalid move");
+            throw  new InvalidMovement();
         }
     }
 
@@ -38,6 +39,12 @@ public class King extends Piece {
     @Override
     public String toString() {
         return "King{value= " +getValue()+ " }";
+    }
+
+    @Override
+    public boolean checkPath(Position oldPosition, Position newPosition, Game game) {
+        //TODO
+        return false;
     }
 
 }

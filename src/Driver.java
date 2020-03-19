@@ -23,7 +23,7 @@ public class Driver {
                     int[] typedPositions = convertToIntegerArray(input);
                     Position oldPosition = new Position(typedPositions[0],typedPositions[1]);
                     Position newPosition = new Position(typedPositions[2],typedPositions[3]);
-                    game.changePosition(oldPosition,newPosition);
+                    game.changePosition(oldPosition,newPosition,game);
                 }
             }catch (InvalidMovement ex){
                 System.out.println(ex.getMessage());
@@ -31,4 +31,6 @@ public class Driver {
 
         }
     }
+
+
 }

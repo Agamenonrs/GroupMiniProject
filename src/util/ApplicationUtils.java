@@ -12,6 +12,7 @@ public class ApplicationUtils {
 
     public  static List<Character> axis_x;
     public static final String UCI_PATTERN = "^[a-hA-H]{1}[1-8]{1}[a-hA-H]{1}[1-8]{1}$";
+    public static final String SQUARE_PATTERN = "^[a-hA-H]{1}[1-8]{1}";
 
     static {
         axis_x = Arrays.asList('A','B','C','D','E','F','G','H');

@@ -68,9 +68,6 @@ public class Game {
             System.out.println(" " + (row+1));
         }
         ApplicationUtils.axis_x.forEach(c-> System.out.print(" " + c));
-        String move = isWhitePlayer() ? "White move " : "Black move";
-        System.out.println("\n " + move );
-
     }
 
     public void askForMove(String ask){
@@ -111,6 +108,10 @@ public class Game {
 
     public boolean isWhitePlayer() {
         return whitePlayer;
+    }
+
+    public void playerResign(){
+        System.out.println(isWhitePlayer() ? "White player resigned! " : "Black player resigned! ");
     }
 
     /**

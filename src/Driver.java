@@ -1,4 +1,5 @@
 import enumeration.BoardIcons;
+import enumeration.HelpOptions;
 import exception.InvalidMovement;
 import exception.InvalidPlayer;
 import util.ApplicationUtils;
@@ -10,11 +11,33 @@ public class Driver {
     public static void main(String[] args) {
         Game game = new Game();
         String input = "";
-        while (!input.equalsIgnoreCase("exit")){
+        while (!HelpOptions.RESIGN.getCode().equalsIgnoreCase(input)){
             try{
+                System.out.println( "\n\n" + (game.isWhitePlayer() ?  "White move " : "Black move" ));
                 input = InputCollector.getUserInput("Enter UCI (type 'Help' for help):");
+
                 if(input !=null && !input.equals("")){
                     if(input.equalsIgnoreCase("exit")){
+                        continue;
+                    }
+                    if(HelpOptions.HELP.getCode().equalsIgnoreCase(input)){
+                        game.printHelOptions();
+                        continue;
+                    }
+                    if(HelpOptions.BOARD.getCode().equalsIgnoreCase(input)){
+                        game.printBoard();
+                        continue;
+                    }
+                    if(HelpOptions.RESIGN.getCode().equalsIgnoreCase(input)){
+                        game.playerResign();
+                        continue;
+                    }
+                    if(HelpOptions.MOVES.getCode().equalsIgnoreCase(input)){
+                        System.out.println(HelpOptions.MOVES.getDescription());
+                        continue;
+                    }
+                    if(ApplicationUtils.regexValitation(input,ApplicationUtils.SQUARE_PATTERN)){
+                        System.out.println(HelpOptions.SQUARE.getDescription());
                         continue;
                     }
                     if(!ApplicationUtils.regexValitation(input,ApplicationUtils.UCI_PATTERN)){

@@ -1,5 +1,6 @@
 import enumeration.BoardIcons;
 import exception.InvalidMovement;
+import exception.InvalidPlayer;
 import util.ApplicationUtils;
 import util.InputCollector;
 
@@ -26,6 +27,8 @@ public class Driver {
                     game.changePosition(oldPosition,newPosition);
                 }
             }catch (InvalidMovement ex){
+                System.out.println(ex.getMessage());
+            }catch (InvalidPlayer ex){
                 System.out.println(ex.getMessage());
             }
 

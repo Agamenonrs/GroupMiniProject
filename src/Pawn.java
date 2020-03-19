@@ -48,7 +48,6 @@ public class Pawn extends Piece {
             System.out.println("Valid move");
             this.position= position;
         }else{
-            System.out.println("Invalid move");
             throw  new InvalidMovement();
         }
     }
@@ -80,16 +79,15 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMove(Position newPosition){
-        System.out.println(super.isWhite);
 
-        if (!super.isValidMove(newPosition)){
-            return false;
-        }
-        if( isSameColumn(this.position, newPosition)
-            && this.position.getRow() + getDiff() == newPosition.getRow() ){
+        /*If the piece moves from (X1, Y1) to (X2, Y2),
+        the move is valid if and only if X2 = X1 and Y2 ‐ Y1 = 1*/
+
+        if( newPosition.getCol() == position.getCol()
+            && newPosition.getRow() - position.getRow() == 1 ){
             return true;
         }
-        if (super.isWhite && this.position.getRow()==1){
+        if (super.isWhite && position.getRow()==1){
             if ( newPosition.getRow() == 2 || newPosition.getRow() == 3){
                 return true;
             }
@@ -99,14 +97,6 @@ public class Pawn extends Piece {
             }
         }
         return false;
-    }
-
-    private int getDiff(){
-        return super.isWhite ? +1 : -1 ;
-    }
-
-    private boolean isSameColumn(Position p1, Position p2){
-        return p1.getCol() == p2.getCol();
     }
 
 }

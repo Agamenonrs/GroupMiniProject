@@ -1,5 +1,6 @@
 import enumeration.HelpOptions;
 import exception.InvalidMovement;
+import exception.InvalidPlayer;
 import util.ApplicationUtils;
 import enumeration.BoardIcons;
 import util.InputCollector;
@@ -80,13 +81,15 @@ public class Game {
         return board;
     }
 
-    public void changePosition(Position oldPosition, Position newPosition) throws InvalidMovement {
+    public void changePosition(Position oldPosition, Position newPosition) throws InvalidMovement, InvalidPlayer {
         Piece piece = getPieceFromBoard(oldPosition);
 
         /* throw invalidMoviment if threre is no piece or
             the color piece chosen is wrong*/
-        if(piece == null || piece.isWhite() != isWhitePlayer())
+        if(piece == null)
             throw new InvalidMovement();
+        if(piece.isWhite() != isWhitePlayer())
+            throw new InvalidPlayer();
 
         piece.move(newPosition);
         this.board[oldPosition.getRow()][oldPosition.getCol()] = null;

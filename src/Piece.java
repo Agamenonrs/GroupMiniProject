@@ -26,6 +26,8 @@ public abstract class Piece {
         return false;
     }
 
+    public abstract boolean isValidMove(Position newPosition, Game game );
+
     public void setPosition(Position position) {
         this.position = position;
     }

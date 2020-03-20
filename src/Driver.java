@@ -39,11 +39,13 @@ public class Driver {
                         continue;
                     }
                     if(HelpOptions.MOVES.getCode().equalsIgnoreCase(input)){
-                        System.out.println(HelpOptions.MOVES.getDescription());
+                        game.showValidMoves();
                         continue;
                     }
                     if(ApplicationUtils.regexValitation(input,ApplicationUtils.SQUARE_PATTERN)){
-                        System.out.println(HelpOptions.SQUARE.getDescription());
+                        int[] typedPositions = convertToIntegerArray(input);
+                        Piece piece = game.getBoard()[typedPositions[1]][typedPositions[0]];
+                        game.showValidMoves(piece);
                         continue;
                     }
 

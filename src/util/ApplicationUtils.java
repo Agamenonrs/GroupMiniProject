@@ -30,8 +30,10 @@ public class ApplicationUtils {
 
         positions [0] = axis_x.indexOf(Character.toUpperCase(chars[0]));
         positions [1] = Character.getNumericValue(chars[1]) - 1;
-        positions [2] = axis_x.indexOf(Character.toUpperCase(chars[2]));
-        positions [3] = Character.getNumericValue(chars[3]) - 1;
+        if(chars.length > 2){
+            positions [2] = axis_x.indexOf(Character.toUpperCase(chars[2]));
+            positions [3] = Character.getNumericValue(chars[3]) - 1;
+        }
         return positions;
     }
 

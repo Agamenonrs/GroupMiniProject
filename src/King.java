@@ -11,13 +11,17 @@ public class King extends Piece {
         super(1000);
     }
 
-    public void move(Position position,Game game) throws InvalidMovement {
-        if (super.isValidMove(position) && isValidMove(position)){
-            System.out.println("Valid move");
-            this.position= position;
+    public void move(Position newPosition,Game game) throws InvalidMovement {
+        if (isValidMove(newPosition, game)){
+            System.out.println("OK");
+            this.position= newPosition;
         }else{
             throw  new InvalidMovement();
         }
+    }
+
+    public boolean isValidMove(Position newPosition, Game game) {
+        return super.isValidMove(position) && isValidMove(position) && checkPath(position, newPosition,game);
     }
 
     @Override
@@ -50,7 +54,7 @@ public class King extends Piece {
     @Override
     public boolean checkPath(Position oldPosition, Position newPosition, Game game) {
         //TODO
-        return false;
+        return true;
     }
 
 }

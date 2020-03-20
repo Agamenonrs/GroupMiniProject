@@ -24,14 +24,18 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void move(Position position, Game game) throws InvalidMovement {
-        System.out.println("path--->"+checkPath(this.position,position,game));
-        if (super.isValidMove(position) && isValidMove(position) && checkPath(this.position,position,game)){
-            System.out.println("Valid move");
-            this.position= position;
+    public void move(Position newPosition, Game game) throws InvalidMovement {
+        //System.out.println("path--->"+checkPath(this.position,newPosition,game));
+        if (isValidMove(newPosition, game)){
+            System.out.println("OK");
+            this.position= newPosition;
         }else{
             throw  new InvalidMovement();
         }
+    }
+
+    public boolean isValidMove(Position newPosition, Game game) {
+        return super.isValidMove(newPosition) && isValidMove(newPosition) && checkPath(this.position,newPosition,game);
     }
 
     @Override
@@ -47,7 +51,7 @@ public class Rook extends Piece {
     @Override
     public boolean checkPath(Position oldPosition, Position newPosition, Game game) {
         boolean vertical = oldPosition.getCol()==newPosition.getCol()?true:false;
-        System.out.println(vertical);
+        //System.out.println(vertical);
         if (vertical){
             boolean goUp =oldPosition.getRow()<newPosition.getRow()? true:false;
             if(goUp){
@@ -63,7 +67,7 @@ public class Rook extends Piece {
             }
         }else{// if I move horizontal
             boolean goRight =oldPosition.getCol()<newPosition.getCol()? true:false;
-            System.out.println(goRight);
+            //System.out.println(goRight);
             if(goRight){
                 for (int i = oldPosition.getCol()+1;i<= newPosition.getCol();i++){
                     if (game.getBoard()[oldPosition.getRow()][i] != null)

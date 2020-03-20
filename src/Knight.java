@@ -12,12 +12,17 @@ public class Knight extends Piece {
     }
 
     @Override
-    public void move(Position position,Game game) throws InvalidMovement {
-        if (super.isValidMove(position) && isValidMove(position)){
-            this.position = position;
+    public void move(Position newPosition,Game game) throws InvalidMovement {
+        if (isValidMove(newPosition, game)){
+            System.out.println("OK");
+            this.position = newPosition;
         }else{
             throw  new InvalidMovement();
         }
+    }
+
+    public boolean isValidMove(Position newPosition, Game game) {
+        return super.isValidMove(newPosition) && isValidMove(newPosition) && checkPath(position,newPosition,game);
     }
 
     @Override
@@ -58,6 +63,6 @@ public class Knight extends Piece {
     @Override
     public boolean checkPath(Position oldPosition, Position newPosition, Game game) {
         //TODO
-        return false;
+        return true;
     }
 }

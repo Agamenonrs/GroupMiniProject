@@ -25,13 +25,17 @@ public class Bishop extends Piece {
 
     @Override
     public void move(Position position,Game game) throws InvalidMovement {
-        if (super.isValidMove(position) && isValidMove(position)&& checkPath(this.position,position,game)){
-            System.out.println("Valid move");
+        if (isValidMove(position, game)){
+            System.out.println("OK");
             this.position= position;
 
         }else{
             throw  new InvalidMovement();
         }
+    }
+
+    public boolean isValidMove(Position newPosition, Game game) {
+        return super.isValidMove(newPosition) && isValidMove(newPosition)&& checkPath(this.position,newPosition,game);
     }
 
     @Override

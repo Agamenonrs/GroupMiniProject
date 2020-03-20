@@ -42,13 +42,17 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void move(Position position, Game game) throws InvalidMovement {
-        if (super.isValidMove(position) && isValidMove(position) && checkPath(this.position,position,game)){
-            System.out.println("Valid move");
-            this.position= position;
+    public void move(Position newPosition, Game game) throws InvalidMovement {
+        if (isValidMove(newPosition, game)){
+            System.out.println("OK");
+            this.position= newPosition;
         }else{
             throw  new InvalidMovement();
         }
+    }
+
+    public boolean isValidMove(Position newPosition, Game game) {
+        return super.isValidMove(newPosition) && isValidMove(newPosition) && checkPath(this.position,newPosition,game);
     }
 
     @Override
@@ -96,14 +100,6 @@ public class Pawn extends Piece {
             }
         }
         return false;
-    }
-
-    private int getDiff(){
-        return super.isWhite ? +1 : -1 ;
-    }
-
-    private boolean isSameColumn(Position p1, Position p2){
-        return p1.getCol() == p2.getCol();
     }
 
     @Override

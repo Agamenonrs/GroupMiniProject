@@ -21,7 +21,7 @@ BoardIcons {
     WHITE_PAWN("\u265f"),
 
 
-    EMPTY("\u25CB");
+    EMPTY(".");
 
     private String code;
 

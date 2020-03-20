@@ -83,7 +83,7 @@ public class Pawn extends Piece {
         the move is valid if and only if X2 = X1 and Y2 ‐ Y1 = 1*/
 
         if( newPosition.getCol() == position.getCol()
-            && newPosition.getRow() - position.getRow() == 1 ){
+            && ((newPosition.getRow() - position.getRow()) ==1 || (position.getRow() - newPosition.getRow()) ==1)){
             return true;
         }
         if (super.isWhite && position.getRow()==1){

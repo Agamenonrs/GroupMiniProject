@@ -25,7 +25,7 @@ public class Bishop extends Piece {
 
     @Override
     public void move(Position position,Game game) throws InvalidMovement {
-        if (super.isValidMove(position) && isValidMove(position)){
+        if (super.isValidMove(position) && isValidMove(position)&& checkPath(this.position,position,game)){
             System.out.println("Valid move");
             this.position= position;
 
@@ -46,7 +46,21 @@ public class Bishop extends Piece {
 
     @Override
     public boolean checkPath(Position oldPosition, Position newPosition, Game game) {
-        //TODO
-        return false;
+        int move = Math.abs(newPosition.getCol() - this.position.getCol());
+        for(int i = move-1;i>0;i--){
+            //left
+            if(oldPosition.getCol()<newPosition.getCol()&&oldPosition.getRow()<newPosition.getRow()){
+                if (!(super.isValidMove(new Position(oldPosition.getCol()+i,oldPosition.getRow()+i)))||game.getBoard()[oldPosition.getRow()+i][oldPosition.getCol()+i] != null){
+                    return false;
+                }
+            }
+           //right
+            if(oldPosition.getCol()<newPosition.getCol()&&oldPosition.getRow()>newPosition.getRow()){
+                if (!(super.isValidMove(new Position(oldPosition.getCol()+i,oldPosition.getRow()-i)))||game.getBoard()[oldPosition.getRow()-i][oldPosition.getCol()+i] != null){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
